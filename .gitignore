@@ -1,0 +1,7 @@
+### Java template
+*.class
+.idea
+target/
+src_managed/
+project/boot/
+project/plugins/project/
