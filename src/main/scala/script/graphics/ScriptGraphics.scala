@@ -57,7 +57,7 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Коментарий
+   * Комментарий
    * символы * и / не доступны внутри коментария
    * @return
    */
@@ -68,14 +68,14 @@ trait ScriptGraphics extends RegexpParsers {
 
   /**
    * Сокращенное определение переменной this.
-   * Не доступно в формате # из за не днозначности
+   * Недоступно в формате # из за неоднозначности
    * @example #apply() #property
    * @return
    */
   def `this` = "#" fn { case str => `This`(None) }
 
   /**
-   * Инстанцирование javaScript обьектов
+   * Инстанцирование javaScript объектов
    * @return
    */
   def newInstance = "new" ~> pipeline fn NewInstance
@@ -100,14 +100,14 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Цикл по свойствам обьекта
+   * Цикл по свойствам объекта
    * @example for (property value) in hashMap console.log("${property} = ${value}")
    * @return
    */
   def loop = ("for" ~> ("(" ~> variable ~ variable <~ ")") <~ "in") ~ pipeline ~ statement fn { case property ~ value ~ from ~ body => Loop(property, value, from, body) }
 
   /**
-   * Параметры функции. любые выражения разделенные запятой
+   * Параметры функции. любые выражения разделенные запятой или именованные параметры
    * @see expression
    * @return
    */
@@ -125,7 +125,7 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Аргументы функции. идеттификатор с возможностью установления деполтного значения.
+   * Аргументы функции. идентификатор с возможностью установления дефолтного значения.
    * @example def name(name = 'undefined')
    * @example def register(email, name = email)
    * @see variable
@@ -170,7 +170,7 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Обнавление свойства у обьекта
+   * Обновление свойства у объекта
    * @return
    */
   def updateVariable:Parser[UpdateProperty] = {
@@ -186,7 +186,7 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Обнавление элемента массива
+   * Обновление элемента массива
    * @see pipeline
    * @see expression
    * @return
@@ -215,7 +215,7 @@ trait ScriptGraphics extends RegexpParsers {
    * Паттерн матчинг. альтернатива if, switch
    * Принимает формат expression 'match'(variableName)? { 'case' expression '=>' statement }
    * variableName по умолчанию имеет значение 'x'
-   * если матчинг не находит совпадения, он кидает ошибку
+   * если матчинг не находит совпадения, он выдает ошибку
    * @example
    *          name match {
    *            case x eq 'tim' => 'hi tim'
@@ -263,7 +263,7 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Обьявление каррированного метода. Имеет формат 'def' variable '(' arguments ')(' arguments ')' statement
+   * Объявление каррированного метода. Имеет формат 'def' variable '(' arguments ')(' arguments ')' statement
    * @see variable
    * @see arguments
    * @return
@@ -280,7 +280,7 @@ trait ScriptGraphics extends RegexpParsers {
    * Структура. Комплексный тип. Структура должна начинаться с заглавной буквы strict Rate(from = 0, to)
    * Создается структура вызовом ее конструктора Rate(3, 9)
    * Структура содержит как собственные методы так и методы экземпляра def next(){}, def self.rand(x){}
-   * Стректура принимает вид
+   * Структура принимает вид
    * 'strict' strictName '(' arguments ')' '{' (strictMethod | method).* '}'
    * Если нет ни одного метода, кавычки можно опустить
    * @example
@@ -293,7 +293,7 @@ trait ScriptGraphics extends RegexpParsers {
    *            }
    *          }
    * @see arguments
-   *      для выражений в arguments доступра переменная that содержащаа текущую структуру
+   *      для выражений в arguments доступна переменная that содержащая текущую структуру
    * @see method
    * @return
    */
@@ -339,7 +339,7 @@ trait ScriptGraphics extends RegexpParsers {
   }
 
   /**
-   * Цепочечные вызовы. Любаю последовательность предпологаемых объектов
+   * Цепочечные вызовы. Любую последовательность предполагаемых объектов
    * @example apply()
    * @example id.apply()
    * @example id.apply()[0].apply()[1]
