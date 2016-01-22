@@ -208,6 +208,13 @@ def add(a, b) {
     a + b
 }
 
+/*блок с параметрами*/
+def builder { |t|
+    t.div {
+
+    }
+}
+
 body {
  h1(width:'100px', height:'300px', class:'h1') {}
  array.forEach {
