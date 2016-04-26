@@ -1,4 +1,4 @@
-# Scropt'Graphics
+# Script'Graphics
 
 Академическая реализация препроцессора для javaScript. Не полная совместимость с javaScript.
 
